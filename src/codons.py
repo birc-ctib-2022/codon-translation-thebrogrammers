@@ -148,7 +148,7 @@ def translate_dna(dna: str) -> str:
     # FIXME: Implement the function
     # return ""
     # kode fra BIP translationproject
-    if len(dna) % 3 == 0 and None not in translate_codons(split_codons(dna)):
+    if len(dna) % 3 == 0 and None != translate_codons(split_codons(dna)):
         return "".join(translate_codons(split_codons(dna)))
     else:
         return None

@@ -118,10 +118,15 @@ def translate_codons(codons: list[str]) -> list[str]:
     # FIXME: Implement the function
     # return []
     # kode fra BIP translationproject
-    return [
+    liste = [
         CODON_MAP[codon.upper()] if codon.upper() in CODON_MAP else None
         for codon in codons
     ]
+
+    if None in liste:
+        return None
+
+    return liste
 
 
 def translate_dna(dna: str) -> str:
@@ -147,8 +152,3 @@ def translate_dna(dna: str) -> str:
         return "".join(translate_codons(split_codons(dna)))
     else:
         return None
-
-
-print(translate_codons(["TGT", "TGC", "TGA"]))
-print(split_codons("aaacccgggttt"))
-print(translate_dna("TGTTGCTGA"))

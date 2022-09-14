@@ -89,7 +89,7 @@ def split_codons(dna: str) -> list[str] | None:
     # return []
     # kode fra BIP translationproject
     if len(dna) % 3 == 0:
-        return [dna.upper()[x : x + 3] for x in range(0, len(dna), 3)]
+        return [dna[x : x + 3] for x in range(0, len(dna), 3)]
     else:
         return None
 
@@ -144,6 +144,11 @@ def translate_dna(dna: str) -> str:
     # return ""
     # kode fra BIP translationproject
     if len(dna) % 3 == 0:
-        return "".join([translate_codons(split_codons(dna))])
+        return "".join(translate_codons(split_codons(dna)))
     else:
         return None
+
+
+print(translate_codons(["TGT", "TGC", "TGA"]))
+print(split_codons("aaacccgggttt"))
+print(translate_dna("TGTTGCTGA"))

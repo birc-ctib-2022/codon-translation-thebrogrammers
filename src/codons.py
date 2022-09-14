@@ -115,7 +115,7 @@ def translate_codons(codons: list[str]) -> list[str]:
     # FIXME: Implement the function
     # return []
     # kode fra BIP translationproject
-    return [CODON_MAP[codons] if codons in CODON_MAP else "?"]
+    return CODON_MAP[codons] if codons in CODON_MAP else "?"
 
 
 def translate_dna(dna: str) -> str:

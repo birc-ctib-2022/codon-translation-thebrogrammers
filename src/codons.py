@@ -88,7 +88,10 @@ def split_codons(dna: str) -> list[str] | None:
     # FIXME: Implement the function
     # return []
     # kode fra BIP translationproject
-    return [dna[x : x + 3] for x in range(0, len(dna), 3)]
+    if len(dna) % 3 == 0:
+        return [dna.upper[x : x + 3] for x in range(0, len(dna), 3)]
+    else:
+        return None
 
 
 def translate_codons(codons: list[str]) -> list[str]:
@@ -115,7 +118,7 @@ def translate_codons(codons: list[str]) -> list[str]:
     # FIXME: Implement the function
     # return []
     # kode fra BIP translationproject
-    return CODON_MAP[codons] if codons in CODON_MAP else "?"
+    return [CODON_MAP[codon.upper] for codon in codons if codons in CODON_MAP else None]
 
 
 def translate_dna(dna: str) -> str:

@@ -87,8 +87,8 @@ if __name__ == '__main__':
             pass
         case 2:
             # one argument
-            print("Feature not implemented yet.", file=sys.stderr)
-            sys.exit(1)
+            print(translate_dna(open(infile, "r")), file=sys.stderr) #("Feature not implemented yet.", file=sys.stderr)
+            #sys.exit(1)
         case 3:
             # two arguments
             print("Feature not implemented yet.", file=sys.stderr)

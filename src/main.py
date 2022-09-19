@@ -13,26 +13,26 @@ This program accepts zero, one, or two arguments, so we can check
 which case we are in using
 
 if len(sys.argv) == 1:
-    # zero arguments
+	# zero arguments
 elif len(sys.argv) == 2:
-    # one argument
+	# one argument
 elif len(sys.argv) == 3:
-    # two arguments
+	# two arguments
 else:
-    # more than two arguments; that is an error
+	# more than two arguments; that is an error
 
 or we can use the new pattern matching syntax from Python 3.10
 and do this, 
 
 match len(sys.argv):
-    case 1:
-        # zero arguments
-    case 2:
-        # one argument
-    case 3:
-        # two arguments
-    case _:
-        # more than two arguments; that is an error
+	case 1:
+		# zero arguments
+	case 2:
+		# one argument
+	case 3:
+		# two arguments
+	case _:
+		# more than two arguments; that is an error
 
 There is no difference between the two ways of doing it, so it
 is entirely a question of taste.
@@ -79,7 +79,7 @@ from codons import translate_dna
 # construction lets you specify code that should only be run
 # when you use a file as a program, but not if you import
 # the file for use as a module.
-if __name__ == '__main__':
+if __name__ == "__main__":
     infile, outfile = sys.stdin, sys.stdout
     match len(sys.argv):
         case 1:
@@ -87,12 +87,13 @@ if __name__ == '__main__':
             pass
         case 2:
             # one argument
-            print(translate_dna(open(infile, "r")), file=sys.stderr) #("Feature not implemented yet.", file=sys.stderr)
-            #sys.exit(1)
+            infile = open(sys.argv[1], "r")
+            # ("Feature not implemented yet.", file=sys.stderr)
+            # sys.exit(1)
         case 3:
             # two arguments
-            print("Feature not implemented yet.", file=sys.stderr)
-            sys.exit(1)
+            infile = open(sys.argv[1], "r")
+            outfile = open(sys.argv[2], "w")
         case _:
             # more than two arguments; that is an error
             print("Too many arguments.", file=sys.stderr)

@@ -1,21 +1,71 @@
 """Module for translating DNA to proteins via codons."""
 
-CODON_MAP = {'TTT': 'F', 'TTC': 'F', 'TTA': 'L', 'TTG': 'L',
-             'TCT': 'S', 'TCC': 'S', 'TCA': 'S', 'TCG': 'S',
-             'TAT': 'Y', 'TAC': 'Y', 'TAA': '*', 'TAG': '*',
-             'TGT': 'C', 'TGC': 'C', 'TGA': '*', 'TGG': 'W',
-             'CTT': 'L', 'CTC': 'L', 'CTA': 'L', 'CTG': 'L',
-             'CCT': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
-             'CAT': 'H', 'CAC': 'H', 'CAA': 'Q', 'CAG': 'Q',
-             'CGT': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R',
-             'ATT': 'I', 'ATC': 'I', 'ATA': 'I', 'ATG': 'M',
-             'ACT': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
-             'AAT': 'N', 'AAC': 'N', 'AAA': 'K', 'AAG': 'K',
-             'AGT': 'S', 'AGC': 'S', 'AGA': 'R', 'AGG': 'R',
-             'GTT': 'V', 'GTC': 'V', 'GTA': 'V', 'GTG': 'V',
-             'GCT': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
-             'GAT': 'D', 'GAC': 'D', 'GAA': 'E', 'GAG': 'E',
-             'GGT': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G'}
+CODON_MAP = {
+    "TTT": "F",
+    "TTC": "F",
+    "TTA": "L",
+    "TTG": "L",
+    "TCT": "S",
+    "TCC": "S",
+    "TCA": "S",
+    "TCG": "S",
+    "TAT": "Y",
+    "TAC": "Y",
+    "TAA": "*",
+    "TAG": "*",
+    "TGT": "C",
+    "TGC": "C",
+    "TGA": "*",
+    "TGG": "W",
+    "CTT": "L",
+    "CTC": "L",
+    "CTA": "L",
+    "CTG": "L",
+    "CCT": "P",
+    "CCC": "P",
+    "CCA": "P",
+    "CCG": "P",
+    "CAT": "H",
+    "CAC": "H",
+    "CAA": "Q",
+    "CAG": "Q",
+    "CGT": "R",
+    "CGC": "R",
+    "CGA": "R",
+    "CGG": "R",
+    "ATT": "I",
+    "ATC": "I",
+    "ATA": "I",
+    "ATG": "M",
+    "ACT": "T",
+    "ACC": "T",
+    "ACA": "T",
+    "ACG": "T",
+    "AAT": "N",
+    "AAC": "N",
+    "AAA": "K",
+    "AAG": "K",
+    "AGT": "S",
+    "AGC": "S",
+    "AGA": "R",
+    "AGG": "R",
+    "GTT": "V",
+    "GTC": "V",
+    "GTA": "V",
+    "GTG": "V",
+    "GCT": "A",
+    "GCC": "A",
+    "GCA": "A",
+    "GCG": "A",
+    "GAT": "D",
+    "GAC": "D",
+    "GAA": "E",
+    "GAG": "E",
+    "GGT": "G",
+    "GGC": "G",
+    "GGA": "G",
+    "GGG": "G",
+}
 
 
 def split_codons(dna: str) -> list[str] | None:
@@ -36,7 +86,12 @@ def split_codons(dna: str) -> list[str] | None:
 
     """
     # FIXME: Implement the function
-    return []
+    # return []
+    # kode fra BIP translationproject
+    if len(dna) % 3 == 0:
+        return [dna[x : x + 3] for x in range(0, len(dna), 3)]
+    else:
+        return None
 
 
 def translate_codons(codons: list[str]) -> list[str]:
@@ -61,7 +116,17 @@ def translate_codons(codons: list[str]) -> list[str]:
 
     """
     # FIXME: Implement the function
-    return []
+    # return []
+    # kode fra BIP translationproject
+    liste = [
+        CODON_MAP[codon.upper()] if codon.upper() in CODON_MAP else None
+        for codon in codons
+    ]
+
+    if None in liste:
+        return None
+
+    return liste
 
 
 def translate_dna(dna: str) -> str:
@@ -81,4 +146,9 @@ def translate_dna(dna: str) -> str:
 
     """
     # FIXME: Implement the function
-    return ""
+    # return ""
+    # kode fra BIP translationproject
+    if len(dna) % 3 == 0 and None != translate_codons(split_codons(dna)):
+        return "".join(translate_codons(split_codons(dna)))
+    else:
+        return None
